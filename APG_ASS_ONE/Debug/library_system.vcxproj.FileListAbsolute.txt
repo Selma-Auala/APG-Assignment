@@ -1,2 +1,4 @@
 D:\C_PlusPlus\library_system\Debug\library_system.exe
 D:\C_PlusPlus\library_system\Debug\library_system.pdb
+D:\C_PlusPlus\APG_Assignment\APG-Assignment\APG_ASS_ONE\Debug\library_system.exe
+D:\C_PlusPlus\APG_Assignment\APG-Assignment\APG_ASS_ONE\Debug\library_system.pdb
