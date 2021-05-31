@@ -1,0 +1,4 @@
+﻿  library_system.cpp
+D:\C_PlusPlus\library_system\library_system.cpp(16,20): warning C4018: '<': signed/unsigned mismatch
+D:\C_PlusPlus\library_system\library_system.cpp(102,6): warning C4101: 'r': unreferenced local variable
+  library_system.vcxproj -> D:\C_PlusPlus\library_system\Debug\library_system.exe
