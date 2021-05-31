@@ -25,6 +25,17 @@ double check_number(string str) {
 	return num;
 }
 
+bool check_stock(book& bk, int val) {
+	if (bk.stock >= val)
+	{
+		return true;
+	}
+	else {
+		return false;
+	};
+
+};
+
 void book::ADD_Data() {
 	cin.ignore();
 	cout << "\nEnter Author Name: ";
@@ -41,7 +52,7 @@ void book::ADD_Data() {
 
 	price = check_number(nextLine);
 
-	cout << "Enter Stock Position: ";   cin >> *stock;
+	cout << "Enter Stock Position: ";   cin >> stock;
 
 }
 
@@ -61,7 +72,7 @@ void book::Edit() {
 	price = check_number(nextLine);
 
 	cout << "Stock Position: ";
-	cin >> *stock;
+	cin >> stock;
 
 
 }
@@ -71,7 +82,7 @@ void book::Show() {
 	cout << "\nTitle Name: " << title;
 	cout << "\nPublisher Name: " << publisher;
 	cout << "\nPrice: " << price;
-	cout << "\nStock Position: " << *stock;
+	cout << "\nStock Position: " << stock;
 
 }
 
@@ -87,8 +98,8 @@ void book::purchase_Book() {
 	int count;
 	cout << "\nEnter Number Of Books to buy: ";
 	cin >> count;
-	if (count <= *stock) {
-		*stock = *stock - count;
+	if (count <= stock) {
+		stock = stock - count;
 		cout << "\nBooks Bought Sucessfully";
 		cout << "\nAmount: Rs. " << (price)*count;
 	}

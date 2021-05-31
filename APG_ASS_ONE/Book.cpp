@@ -1,8 +1,8 @@
 class book {
-private:
+
 	char* author, * title, * publisher;
 	double price;
-	int* stock;
+	int stock;
 	char* nextLine;
 
 public:
@@ -25,6 +25,13 @@ public:
 		nextLine = old_Book.nextLine;
 
 	}
+	//friend class
+	friend class bookRecord;
+
+
+	//friend function
+	friend bool check_stock(book& bk, int val) {};
+
 
 	void ADD_Data();
 	void Edit();
@@ -32,4 +39,11 @@ public:
 	int find_Book(char[], char[]);
 	void purchase_Book();
 
+};
+
+class bookRecord
+{
+
+private:
+	borrowList :
 };
