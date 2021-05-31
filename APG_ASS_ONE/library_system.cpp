@@ -8,6 +8,7 @@
 
 #include "Book.cpp"
 
+#include <fstream>
 
 using namespace std;
 
@@ -37,6 +38,11 @@ bool check_stock(book& bk, int val) {
 };
 
 void book::ADD_Data() {
+	read();
+
+	fstream booksfile("books.txt", ios::ios_base::app);
+	book b;
+
 	cin.ignore();
 	cout << "\nEnter Author Name: ";
 	cin.getline(author, 20);
@@ -52,7 +58,65 @@ void book::ADD_Data() {
 
 	price = check_number(nextLine);
 
-	cout << "Enter Stock Position: ";   cin >> stock;
+	cout << "Enter Stock Position: ";
+	cin.getline(nextLine, 20);
+
+	stock = check_number(nextLine);
+	//booksfile
+	booksfile << title;
+	booksfile << " ";
+	booksfile << publisher;
+	booksfile << " ";
+	booksfile << author;
+	booksfile << " ";
+	booksfile << price;
+	booksfile << " ";
+	booksfile << stock;
+	booksfile << " .\n" << endl;
+
+	booksfile.close();
+
+	read();
+}
+
+void book::read() {
+	// Object to read from file
+	ifstream file_obj;
+	string line;
+	// Opening file in input mode
+	file_obj.open("books.txt", ios::in);
+
+	if (file_obj.is_open()) {
+
+		//getline(file_obj, line);
+		cout << "\n***************************************************************************" << endl;
+		cout << "*\t\t\t\t\t ~Inventory~\t\t\t\t  *" << endl;
+		cout << "***************************************************************************" << endl;
+		cout << "\n" << endl;
+		while (!file_obj.eof())
+		{
+			file_obj >> line;
+			if (line != ".")
+			{
+				cout << "\nAuthor Name: " << line;
+				file_obj >> line;
+				cout << "\nTitle Name: " << line;
+				file_obj >> line;
+				cout << "\nPublisher Name: " << line;
+				file_obj >> line;
+				cout << "\nPrice: " << line;
+				file_obj >> line;
+				cout << "\nStock Position: " << line << endl;
+				file_obj >> line;
+			}
+		}
+	}
+	else {
+		cout << "Error [!] \n";
+	}
+
+
+	file_obj.close();
 
 }
 
@@ -81,7 +145,7 @@ void book::Show() {
 	cout << "\nAuthor Name: " << author;
 	cout << "\nTitle Name: " << title;
 	cout << "\nPublisher Name: " << publisher;
-	cout << "\nPrice: " << price;
+	cout << "\nPrice: N$" << price;
 	cout << "\nStock Position: " << stock;
 
 }
@@ -108,6 +172,7 @@ void book::purchase_Book() {
 }
 
 int main() {
+
 	book* B[20];
 	int i = 0;
 	int r;
@@ -124,10 +189,12 @@ int main() {
 			<< "\n\t\t2. Buy Book"
 			<< "\n\t\t3. find_Book For Book"
 			<< "\n\t\t4. Edit Details Of Book"
-			<< "\n\t\t5. Exit"
+			<< "\n\t\t5. Inventory"
+			<< "\n"
+			<< "\n\t\t0. Exit"
 			<< "\n\nEnter your Choice: ";
 		cin >> choice;
-
+		//read();
 		switch (choice) {
 		case 1:
 			B[i] = new book;
@@ -177,7 +244,10 @@ int main() {
 				cout << "\nThis Book is Not in Stock";
 			break;
 
-		case 5: exit(0);
+		case 5: B[0]->read();
+			break;
+
+		case 0: exit(0);
 
 		default:
 			cout << "\nInvalid Choice Entered";
